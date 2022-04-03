@@ -49,6 +49,9 @@ class bar:
         self.console.addstr(0, 0, f"{self.text} |{self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}% {f'[{self.__str_round(self.time - self.init)} s / {self.__str_round(self.total)} s]' if self.show_time else ''}")
         self.console.refresh()
         
+        if self.current == self.steps:
+            curses.endwin()
+        
     
     def __str_round(self, num: int) -> str:
         """round a number to 2 decimal"""
