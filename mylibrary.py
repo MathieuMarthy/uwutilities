@@ -46,10 +46,7 @@ class bar:
         self.time = now()
         self.total = self.mean / self.current * self.steps
         
-        
-        tmp = f"{self.text} |{self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}% {f'[{self.__str_round(self.time - self.init)} s / {self.__str_round(self.total)} s]' if self.show_time else ''}"
-
-        self.console.addstr(0, 0, tmp + "")
+        self.console.addstr(0, 0, f"{self.text} |{self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}% {f'[{self.__str_round(self.time - self.init)} s / {self.__str_round(self.total)} s]' if self.show_time else ''}")
         self.console.refresh()
         
     
