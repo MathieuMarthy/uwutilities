@@ -68,6 +68,10 @@ class bar:
 
         return avant + "." + apres
 
+    def stop(self):
+        """stop the progress bar"""
+            
+        curses.endwin()
 
 
 # --- replace characters in a string ---
