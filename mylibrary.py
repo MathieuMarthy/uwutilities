@@ -1,8 +1,3 @@
-""" this is my personnal library with useful functions
-    - bar -> progress bar
-    - string -> string manipulation
-"""
-
 # --- progress bar ---
 from time import time as now
 from datetime import timedelta
