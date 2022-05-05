@@ -12,16 +12,26 @@ Elle a de nombreuses options:
 - lenght: la longueur de la barre
 - show_steps: afficher ou non le nombre d'étapes effectuées sur le total
 - show_time: afficher ou non le temps écoulé sur le temps total
+- show_time_left: afficher ou non le temps restant
 
 Exemple d'utilisation:
 
+### Code
 ```python
-from myLibrary import bar
-Bar = bar("chargement", steps=10, lenght=50, show_time=False)
+from mylibrary import bar
+import time
+
+Bar = bar(steps=10, text="chargement", lenght=50)
 
 for _ in range(10):
     Bar.next()
+    time.sleep(1)
 ```
+### Resultat
+```
+chargement | ██████████████████████████████                    | 60% [ steps:  6 / 10 | finished in: 0:00:03 ]
+```
+
 
 ## Methodes
 
