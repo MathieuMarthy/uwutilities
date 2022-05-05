@@ -5,8 +5,8 @@
 
 # --- progress bar ---
 from time import time as now
+from datetime import timedelta
 import curses
-import time
 
 class bar:
 
@@ -49,7 +49,8 @@ class bar:
         self.time = now()
         self.total = self.mean / self.current * self.steps
 
-        self.console.addstr(0, 0, f"{self.text} | {self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}%{' [' if self.show_time or self.show_steps else ''}{f' steps:  {self.current} / {self.steps} ' if self.show_steps else ''}{ '|' if self.show_time and self.show_steps else ''}{f' time: {self.__str_round(self.time - self.init)} s / {self.__str_round(self.total)} s ' if self.show_time else ''}{']' if self.show_time or self.show_steps else ''}")
+
+        self.console.addstr(0, 0, f"{self.text} | {self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}%{' [' if self.show_time or self.show_steps else ''}{f' steps:  {self.current} / {self.steps} ' if self.show_steps else ''}{ '|' if self.show_time and self.show_steps else ''}{f' time: {str(timedelta(seconds=self.time - self.init))[:-7]} / {str(timedelta(seconds=self.total))[:-7]} ' if self.show_time else ''}{']' if self.show_time or self.show_steps else ''}")
         self.console.refresh()
 
         if self.current == self.steps:
