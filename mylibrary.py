@@ -12,7 +12,7 @@ class bar:
 
     """progress bar"""
 
-    def __init__(self, steps: int, text: str = "", pattern_bar: str = "█", pattern_space: str = " ", lenght: int = 10, show_steps: bool = True, show_time: bool = True) -> None:
+    def __init__(self, steps: int, text: str = "", pattern_bar: str = "█", pattern_space: str = " ", lenght: int = 10, show_steps: bool = True, show_time: bool = False, show_time_left: bool = True) -> None:
         """initialize the progress bar
 
         Args:
@@ -34,6 +34,7 @@ class bar:
 
         self.show_time = show_time
         self.show_steps = show_steps
+        self.show_time_left = show_time_left
         self.pattern_bar = pattern_bar
         self.pattern_space = pattern_space
         self.lenght = lenght
@@ -50,7 +51,7 @@ class bar:
         self.total = self.mean / self.current * self.steps
 
 
-        self.console.addstr(0, 0, f"{self.text} | {self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}%{' [' if self.show_time or self.show_steps else ''}{f' steps:  {self.current} / {self.steps} ' if self.show_steps else ''}{ '|' if self.show_time and self.show_steps else ''}{f' time: {str(timedelta(seconds=self.time - self.init))[:-7]} / {str(timedelta(seconds=self.total))[:-7]} ' if self.show_time else ''}{']' if self.show_time or self.show_steps else ''}")
+        self.console.addstr(0, 0, f"{self.text} | {self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}%{' [' if self.show_time or self.show_steps else ''}{f' steps:  {self.current} / {self.steps} ' if self.show_steps else ''}{ '|' if self.show_time and self.show_steps else ''}{f' time: {str(timedelta(seconds=self.time - self.init))[:-7]} / {str(timedelta(seconds=self.total))[:-7]} ' if self.show_time else ''}{f'| finished in: {str(timedelta(seconds=self.total - (self.time - self.init)))[:-7]} ' if self.show_time_left else ''}{']' if self.show_time or self.show_steps or self.show_time_left else ''}")
         self.console.refresh()
 
         if self.current == self.steps:
