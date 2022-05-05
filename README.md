@@ -17,8 +17,9 @@ Elle a de nombreuses options:
 Exemple d'utilisation:
 
 ### Code
+
 ```python
-from mylibrary import bar
+from uwutilities.uwutilities import bar
 import time
 
 Bar = bar(steps=10, text="chargement", lenght=50)
