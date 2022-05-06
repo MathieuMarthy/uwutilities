@@ -19,7 +19,7 @@ Exemple d'utilisation:
 ### Code
 
 ```python
-from uwutilities.uwutilities import bar
+from uwutilities import bar
 import time
 
 Bar = bar(steps=10, text="chargement", lenght=50)
