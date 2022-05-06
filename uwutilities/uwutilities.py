@@ -127,7 +127,6 @@ class Import:
         vari = []
         lines = open(file, "r").readlines()
         for variable in variables:
-            print(variable)
             tmp = len(vari)
 
             for line in lines:
