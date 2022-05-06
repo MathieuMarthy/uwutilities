@@ -1,0 +1,8 @@
+README.md
+setup.py
+uwutilities/__init__.py
+uwutilities/uwutilities.py
+uwutilities.egg-info/PKG-INFO
+uwutilities.egg-info/SOURCES.txt
+uwutilities.egg-info/dependency_links.txt
+uwutilities.egg-info/top_level.txt

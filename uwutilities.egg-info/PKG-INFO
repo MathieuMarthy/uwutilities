@@ -1,0 +1,55 @@
+Metadata-Version: 2.1
+Name: uwutilities
+Version: 0.1.0
+Summary: useful functions in loose
+Home-page: https://github.com/kojhyy/uwutilities
+Author: kojhyy
+Author-email: l4p0ubelle@gmail.com
+License: MIT
+Description: # bouts de code utiles
+        
+        ## __progress bar__
+        la barre de progression est un objet qui permet de faire une barre de chargement. 
+        
+        Elle a de nombreuses options:
+        
+        - steps: le nombre d'étapes
+        - text: le texte à afficher a gauche de la bar
+        - pattern_bar: le string de la partie remplie de la barre
+        - pattern_space: le string de la partie vide de la barre
+        - lenght: la longueur de la barre
+        - show_steps: afficher ou non le nombre d'étapes effectuées sur le total
+        - show_time: afficher ou non le temps écoulé sur le temps total
+        - show_time_left: afficher ou non le temps restant
+        
+        Exemple d'utilisation:
+        
+        ### Code
+        
+        ```python
+        from uwutilities.uwutilities import bar
+        import time
+        
+        Bar = bar(steps=10, text="chargement", lenght=50)
+        
+        for _ in range(10):
+            Bar.next()
+            time.sleep(1)
+        ```
+        ### Resultat
+        ```
+        chargement | ██████████████████████████████                    | 60% [ steps:  6 / 10 | finished in: 0:00:03 ]
+        ```
+        
+        
+        ## Methodes
+        
+        - next(): avance la barre de chargement
+        - stop(): arrête la barre de chargement
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
