@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="uwutilities",
-    version="0.1.3",
+    version="0.1.3.2",
     description="useful functions in loose",
     long_description=long_description,
     long_description_content_type="text/markdown",

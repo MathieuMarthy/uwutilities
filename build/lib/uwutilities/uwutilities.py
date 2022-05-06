@@ -115,6 +115,7 @@ class Import:
     
     def get(file: str, variables: str) -> list:
         """import variables from a file
+        None is return if the variable is not found
 
         Args:
             file (str): the file where is stored
@@ -126,8 +127,13 @@ class Import:
         vari = []
         lines = open(file, "r").readlines()
         for variable in variables:
+            tmp = len(vari)
+
             for line in lines:
                 if line.startswith(variable):
                     vari.append(line.split("=")[1].strip())
+
+            if tmp == len(vari):
+                vari.append(None)
         
         return vari
