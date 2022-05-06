@@ -88,4 +88,4 @@ Cette classe permet d'importer des variable depuis un fichier avec le format
 		variables (str): the variables to import
 
 	Returns:
-		list: the imported variables
+		tuple: the imported variables

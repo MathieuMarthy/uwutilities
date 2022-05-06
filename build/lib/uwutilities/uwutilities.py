@@ -113,7 +113,7 @@ class String_tools:
 
 class Import:
     
-    def get(file: str, variables: str) -> list:
+    def get(file: str, variables: str) -> tuple:
         """import variables from a file
         None is return if the variable is not found
 
@@ -122,9 +122,9 @@ class Import:
             variables (str): the names of the variables to import
 
         Returns:
-            list: the list of values
+            tuple: the tuple of values
         """
-        vari = []
+        vari = ()
         lines = open(file, "r").readlines()
         for variable in variables:
             tmp = len(vari)
