@@ -110,3 +110,24 @@ class String_tools:
         for i in range(0, len(args), 2):
             string = string.replace(args[i], args[i + 1])
         return string
+
+class Import:
+    
+    def get(file: str, variables: str) -> list:
+        """import variables from a file
+
+        Args:
+            file (str): the file where is stored
+            variables (str): the names of the variables to import
+
+        Returns:
+            list: the list of values
+        """
+        vari = []
+        lines = open(file, "r").readlines()
+        for variable in variables:
+            for line in lines:
+                if line.startswith(variable):
+                    vari.append(line.split("=")[1].strip())
+        
+        return vari

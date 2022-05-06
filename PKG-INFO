@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: uwutilities
-Version: 0.1.3
+Version: 0.1.2
 Summary: useful functions in loose
 Home-page: https://github.com/kojhyy/uwutilities
 Author: kojhyy
@@ -83,21 +83,6 @@ Description: # bouts de code utiles
         a = string.replace(a, 4, "a")
         print(a) -> "Hella World"
         ```
-        
-        # __Import__
-        Cette classe permet d'importer des variable depuis un fichier avec le format
-        ```variable = value```
-        
-        ### Methodes
-        
-        ### get
-        	Args:
-        		file (str): the file to import from
-        		variables (str): the variables to import
-        
-        	Returns:
-        		list: the imported variables
-        
 Platform: UNKNOWN
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python
