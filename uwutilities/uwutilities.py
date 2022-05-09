@@ -1,11 +1,9 @@
-"""
-test de doc
-"""
-
 # --- progress bar ---
 from time import time as now
 from datetime import timedelta
 import curses
+
+from regex import D
 
 
 class Bar:
@@ -109,32 +107,63 @@ class String_tools:
         """
         for i in range(0, len(args), 2):
             string = string.replace(args[i], args[i + 1])
+
         return string
 
 class Import:
-    
-    def get(file: str, *variables: str) -> tuple:
-        """import variables from a file
-        None is return if the variable is not found
 
-        Args:
-            file (str): the file where is stored
-            variables (str): the names of the variables to import
+    def __init__(self, file: str):
+        self.file = file
+        self.dictionary = {}
 
-        Returns:
-            tuple: the tuple of values
-        """
-        vari = []
-        lines = open(file, "r").readlines()
+    def get_all(self):
+        vari = {}
+        lines = open(self.file, "r").readlines()
+
+        if len(lines) == 1:
+            return
+
+        for line in lines:
+            if line == "" or line == "\n":
+                continue
+
+            line = line.split("=")
+            line[0], line[1] = line[0].strip(), line[1].strip()
+
+            if line[0] in vari:
+                raise Exception(f"{line[0]} est plusieurs fois dans le fichier")
+            
+            
+            vari[line[0]] = line[1][:-1] if line[1].endswith("\n") else line[1]
+ 
+        self.dictionary = vari
+
+
+    def save_all(self):
+        string = ""
+        for key, value in self.dictionary.items():
+            string += f"{key}={value}\n"
+        
+        open(self.file, "w").write(string)
+
+
+    def save(self, *variables: str):
+        lines = open(self.file, "r").readlines()
+
+        variables_of_lines = []
+        for line in lines:
+            if line.strip() != "" or line != "\n":
+                variables_of_lines.append(line.split("=")[0].strip())
+
         for variable in variables:
-            tmp = len(vari)
 
-            for line in lines:
-                if line.startswith(variable):
-                    vari.append(line.split("=")[1].strip())
+            if variable not in variables_of_lines:
+                lines.append(f"{variable}={self.dictionary[variable]}")
 
-            if tmp == len(vari):
-                vari.append(None)
-        if len(vari) == 1:
-            return vari[0]
-        return tuple(vari)
+            else:
+                for i in range(len(lines)):
+                    if lines[i].startswith(variables):
+                        lines[i] = f"{variable}={self.dictionary[variable]}"
+
+        line = [line for line in lines if line != [] and line != []]        
+        open(self.file, "w").writelines(line)
