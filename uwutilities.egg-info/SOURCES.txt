@@ -4,8 +4,6 @@ README.md
 requirements.txt
 setup.cfg
 setup.py
-dist/uwutilities-1.3.5-py3-none-any.whl
-dist/uwutilities-1.3.5.tar.gz
 uwutilities/__init__.py
 uwutilities/uwutilities.py
 uwutilities.egg-info/PKG-INFO

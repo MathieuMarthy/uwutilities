@@ -3,13 +3,11 @@ from time import time as now
 from datetime import timedelta
 import curses
 
-from regex import D
-
 
 class Bar:
     """progress bar"""
 
-    def __init__(self, steps: int, text: str = "", pattern_bar: str = "█", pattern_space: str = " ", lenght: int = 10,
+    def __init__(self, steps: int, text: str = "", pattern_bar: str = "█", pattern_space: str = " ", lenght: int = 25,
                  show_steps: bool = True, show_time: bool = False, show_time_left: bool = True) -> None:
         """initialize the progress bar
 
@@ -20,37 +18,38 @@ class Bar:
             pattern_space (str): pattern of the space
             lenght (int): lenght of the progress bar
         """
-        self.steps = steps
-        self.text = text
+        self._steps = steps
+        self._text = text
 
-        self.current = 0
-        self.time = now()
-        self.init = now()
-        self.total = 0
-        self.mean = 0
+        self._current = 0
+        self._time = now()
+        self._init = now()
+        self._total = 0
+        self._mean = 0
 
-        self.show_time = show_time
-        self.show_steps = show_steps
-        self.show_time_left = show_time_left
-        self.pattern_bar = pattern_bar
-        self.pattern_space = pattern_space
-        self.lenght = lenght
+        self._show_time = show_time
+        self._show_steps = show_steps
+        self._show_time_left = show_time_left
+        self._pattern_bar = pattern_bar
+        self._pattern_space = pattern_space
+        self._lenght = lenght
 
-        self.console = curses.initscr()
+        self._console = curses.initscr()
+        self._console.clear()
 
     def next(self):
         """increment the progress bar"""
 
-        self.current += 1
-        self.mean += now() - self.time
-        self.time = now()
-        self.total = self.mean / self.current * self.steps
+        self._current += 1
+        self._mean += now() - self._time
+        self._time = now()
+        self._total = self._mean / self._current * self._steps
 
-        self.console.addstr(0, 0,
-                            f"{self.text} | {self.pattern_bar * (self.current * self.lenght // self.steps)}{self.pattern_space * (self.lenght - (self.current * self.lenght // self.steps))}| {self.current * 100 // self.steps}%{' [' if self.show_time or self.show_steps else ''}{f' steps:  {self.current} / {self.steps} ' if self.show_steps else ''}{'|' if self.show_time and self.show_steps else ''}{f' time: {str(timedelta(seconds=self.time - self.init))[:-7]} / {str(timedelta(seconds=self.total))[:-7]} ' if self.show_time else ''}{f'| finished in: {str(timedelta(seconds=self.total - (self.time - self.init)))[:-7]} ' if self.show_time_left else ''}{']' if self.show_time or self.show_steps or self.show_time_left else ''}")
-        self.console.refresh()
+        self._console.addstr(0, 0,
+                            f"{self._text} | {self._pattern_bar * (self._current * self._lenght // self._steps)}{self._pattern_space * (self._lenght - (self._current * self._lenght // self._steps))}| {self._current * 100 // self._steps}%{' [' if self._show_time or self._show_steps else ''}{f' steps:  {self._current} / {self._steps} ' if self._show_steps else ''}{'|' if self._show_time and self._show_steps else ''}{f' time: {str(timedelta(seconds=self._time - self._init))[:-7]} / {str(timedelta(seconds=self._total))[:-7]} ' if self._show_time else ''}{f'| finished in: {str(timedelta(seconds=self._total - (self._time - self._init)))[:-7]} ' if self._show_time_left else ''}{']' if self._show_time or self._show_steps or self._show_time_left else ''}")
+        self._console.refresh()
 
-        if self.current == self.steps:
+        if self._current == self._steps:
             curses.endwin()
 
     def __str_round(self, num: int) -> str:
@@ -63,7 +62,7 @@ class Bar:
         avant = "0" * (3 - len(avant)) + avant
         apres += "0" * (3 - len(apres))
 
-        return avant + "." + apres
+        return f"{avant}.{apres}"
 
     def stop(self):
         """stop the progress bar"""
