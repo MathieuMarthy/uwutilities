@@ -109,60 +109,14 @@ class String_tools:
 
         return string
 
-class Import:
 
-    def __init__(self, file: str):
-        self.file = file
-        self.dictionary = {}
+    def singular_or_plural(number: int) -> str:
+        """return the singular or plural form of a word
 
-    def get_all(self):
-        vari = {}
-        lines = open(self.file, "r").readlines()
+        Args:
+            number (int): the number of the word
 
-        if len(lines) == 1:
-            return
-
-        for line in lines:
-            if line == "" or line == "\n":
-                continue
-
-            line = line.split("=")
-            line[0], line[1] = line[0].strip(), line[1].strip()
-
-            if line[0] in vari:
-                raise Exception(f"{line[0]} est plusieurs fois dans le fichier")
-            
-            
-            vari[line[0]] = line[1][:-1] if line[1].endswith("\n") else line[1]
- 
-        self.dictionary = vari
-
-
-    def save_all(self):
-        string = ""
-        for key, value in self.dictionary.items():
-            string += f"{key}={value}\n"
-        
-        open(self.file, "w").write(string)
-
-
-    def save(self, *variables: str):
-        lines = open(self.file, "r").readlines()
-
-        variables_of_lines = []
-        for line in lines:
-            if line.strip() != "" or line != "\n":
-                variables_of_lines.append(line.split("=")[0].strip())
-
-        for variable in variables:
-
-            if variable not in variables_of_lines:
-                lines.append(f"{variable}={self.dictionary[variable]}")
-
-            else:
-                for i in range(len(lines)):
-                    if lines[i].startswith(variables):
-                        lines[i] = f"{variable}={self.dictionary[variable]}"
-
-        line = [line for line in lines if line != [] and line != []]        
-        open(self.file, "w").writelines(line)
+        Returns:
+            str: s if number > 1 else ""
+        """
+        return "s" if number > 1 else ""
