@@ -7,7 +7,7 @@ Elle a de nombreuses options:
 
     Args:
         steps (int): le nombre de d'étapes
-        text (str): le message afficher a gauche de la barre
+        text (str): le message affiché a gauche de la barre
         pattern_bar (str): le motif de la barre
         pattern_space (str): le motif de l'espace
         lenght (int): la longueur de la barre
@@ -75,17 +75,3 @@ a = "Hello World"
 a = string.replace(a, 4, "a")
 print(a) -> "Hella World"
 ```
-
-# __Import__
-Cette classe permet d'importer des variable depuis un fichier avec le format
-```variable = value```
-
-### Methodes
-
-### get
-	Args:
-		file (str): the file to import from
-		variables (str): the variables to import
-
-	Returns:
-		tuple: the imported variables
