@@ -1,4 +1,4 @@
-# bouts de code utiles
+# Librairie Python
 
 ## __progress bar__
 la barre de progression est un objet qui permet de faire une barre de chargement. 
