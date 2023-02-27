@@ -1,5 +1,11 @@
 # Librairie Python
 
+## Installation 
+
+```bash
+pip install uwutilities
+```
+
 ## __progress bar__
 la barre de progression est un objet qui permet de faire une barre de chargement. 
 
