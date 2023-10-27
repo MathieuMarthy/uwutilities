@@ -111,12 +111,12 @@ class String_tools:
 
 
     def singular_or_plural(number: int) -> str:
-        """return the singular or plural form of a word
+        """return "s" if number > 1 else "
 
         Args:
-            number (int): the number of the word
+            number (int): number of elements
 
         Returns:
-            str: s if number > 1 else ""
+            str: "s" or ""
         """
         return "s" if number > 1 else ""
