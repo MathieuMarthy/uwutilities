@@ -47,7 +47,7 @@ chargement | ██████████████████████�
 - stop(): arrête la barre de chargement
 
 ## __String_tools__
-Cette classe permet de modifier des string facilement.
+Cette classe permet de modifier des strings facilement.
 
 ### Methodes
 
