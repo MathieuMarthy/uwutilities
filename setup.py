@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="uwutilities",
-    version="1.4.2",
+    version="1.4.4",
     description="A collection of utilities for python",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -31,5 +31,8 @@ setup(
         "Operating System :: OS Independent"
     ],
     packages=["uwutilities"],
-    include_package_data=True
+    include_package_data=True,
+    install_requires=[
+        "windows-curses"
+    ]
 )
